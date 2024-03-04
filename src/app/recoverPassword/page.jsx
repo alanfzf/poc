@@ -1,5 +1,5 @@
 "use client"
-import { Input } from "@nextui-org/react"
+import { Input, Link } from "@nextui-org/react"
 import { Button } from "@nextui-org/button"
 import { useRouter } from "next/navigation"
 
@@ -60,7 +60,7 @@ function RestorePassword() {
                 isLoading={isSubmitting}>
                 Realizar solicitud
               </Button>
-              <Button color="secondary" size="lg">
+              <Button as={Link} color="secondary" size="lg" href="/">
                 Volver
               </Button>
             </div>

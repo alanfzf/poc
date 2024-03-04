@@ -1,7 +1,5 @@
 "use client"
-import { Input } from "@nextui-org/react"
-import { Button } from "@nextui-org/button"
-import { Link } from "@nextui-org/react"
+import { Link, Button, Input } from "@nextui-org/react"
 import Image from "next/image"
 
 import { useRouter } from "next/navigation"
@@ -30,7 +28,7 @@ export default function Home() {
 
   const onSubmit = async (_data) => {
     await new Promise((resolve) => setTimeout(resolve, 800))
-    router.push("/404", { scroll: false })
+    router.push("/dashboard", { scroll: false })
   }
 
   return (
