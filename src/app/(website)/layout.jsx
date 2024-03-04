@@ -1,5 +1,6 @@
 "use client"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import {
   Navbar,
   NavbarBrand,
@@ -18,11 +19,12 @@ import {
 } from "@nextui-org/react"
 
 export default function WebsiteLayout({ children }) {
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
     <div className="layout">
-      <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <Navbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
         <NavbarContent>
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -42,14 +44,14 @@ export default function WebsiteLayout({ children }) {
         <NavbarMenu>
           {/* apartado del dashboard */}
           <NavbarMenuItem key={"dashboard"}>
-            <Button variant="light" size="lg">
+            <Button as={Link} variant="light" size="lg" href="/dashboard">
               Dashboard
             </Button>
           </NavbarMenuItem>
 
           {/* apartado de la reporteria */}
           <NavbarMenuItem key={"reporteria"}>
-            <Button variant="light" size="lg">
+            <Button variant="light" size="lg" href="/reports">
               Reporteria
             </Button>
           </NavbarMenuItem>
@@ -64,11 +66,14 @@ export default function WebsiteLayout({ children }) {
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Static Actions"
-                onAction={(key) => alert(key)}>
-                <DropdownItem key="createPreq">
+                onAction={(key) => {
+                  setIsMenuOpen(false)
+                  router.push(key)
+                }}>
+                <DropdownItem key="/prequalifications/create">
                   Crear precalificacion
                 </DropdownItem>
-                <DropdownItem key="listPreq">
+                <DropdownItem key="/prequalifications">
                   Listar precalificaciones
                 </DropdownItem>
               </DropdownMenu>

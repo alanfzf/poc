@@ -8,34 +8,49 @@ function PrequalificationCreate() {
       <form onSubmit={() => {}}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
           <Input
+            //{...register("correo")}
             type="text"
-            variant="bordered"
-            placeholder="Primer Nombre"
+            label="Primer nombre"
             isRequired
             isClearable
+            variant="bordered"
+            // isInvalid={errors.correo}
+            // errorMessage={errors.correo?.message}
           />
           <Input
+            //{...register("correo")}
             type="text"
-            variant="bordered"
-            placeholder="Primer apellido"
+            label="Primer apellido"
             isRequired
             isClearable
+            variant="bordered"
+            // isInvalid={errors.correo}
+            // errorMessage={errors.correo?.message}
           />
-
           <Checkbox>
             ¿Posee recibo de luz propio o de algun familiar directo?
           </Checkbox>
           <Input
             type="file"
             variant="bordered"
-            placeholder="No. documento"
+            label="No. documento"
             isRequired
             isClearable
           />
         </div>
-        <Button color="primary" size="lg" type="submit" isLoading={false}>
-          Iniciar sesión
-        </Button>
+        <div>
+          <Button
+            color="primary"
+            size="lg"
+            type="submit"
+            isLoading={false}
+            className="mr-5">
+            Precalificar
+          </Button>
+          <Button color="secondary" size="lg" href="/prequalifications">
+            Volver al inicio
+          </Button>
+        </div>
       </form>
     </div>
   )

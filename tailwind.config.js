@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
-import { nextui } from "@nextui-org/react";
+import { nextui } from "@nextui-org/react"
 
 const config = {
   content: [
@@ -24,12 +24,16 @@ const config = {
               DEFAULT: "#83B916",
               foreground: "#000000",
             },
-            // focus: "#BEF264",
+            secondary: {
+              DEFAULT: "#f4f6f9",
+              foreground: "#000000",
+            },
+            focus: "#83B916",
           },
         },
       },
     }),
   ],
-};
+}
 
-export default config;
+export default config
