@@ -16,3 +16,7 @@ html {
 .layout main {
   flex-grow: 1;
 }
+
+::file-selector-button {
+  display: none;
+}

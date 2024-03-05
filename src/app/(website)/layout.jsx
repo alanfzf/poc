@@ -51,7 +51,7 @@ export default function WebsiteLayout({ children }) {
 
           {/* apartado de la reporteria */}
           <NavbarMenuItem key={"reporteria"}>
-            <Button variant="light" size="lg" href="/reports">
+            <Button as={Link} variant="light" size="lg" href="/reports">
               Reporteria
             </Button>
           </NavbarMenuItem>
