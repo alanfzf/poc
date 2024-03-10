@@ -20,14 +20,13 @@ function Prequalifications() {
   const rowsPerPage = 5
   const { data, isLoading } = useSWR("/api/prequalifications", fetcher)
 
-  const users = data || []
-  const pages = Math.ceil(users.length / rowsPerPage)
+  const pages = Math.ceil(data?.length / rowsPerPage)
 
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage
     const end = start + rowsPerPage
-    return users.slice(start, end)
-  }, [page, users])
+    return data ? data.slice(start, end) : []
+  }, [page, data])
 
   const renderCell = React.useCallback((user, columnKey) => {
     const cellValue = user[columnKey]

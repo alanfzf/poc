@@ -1,12 +1,32 @@
 "use client"
+
+import dynamic from "next/dynamic"
 import React from "react"
-import Chart from "react-apexcharts"
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false })
 import ChartContainer from "./chartContainer"
+
+const meses = [
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre",
+  "enero",
+  "febrero",
+  "marzo",
+]
 
 const state = [
   {
-    name: "Series1",
-    data: [1, 2, 4, 11, 35, 20, 3, 10, 6, 2],
+    name: "Ganancias",
+    data: [
+      39087.17, 51274.17, 40715.16, 38162.3, 43010.9, 57429.98, 60112.07,
+      52345.37, 58427.18, 55085.85, 48755.46, 19370.59,
+    ],
   },
 ]
 
@@ -19,25 +39,14 @@ const options = {
     },
     id: "basic-bar",
     foreColor: "gray",
-    stacked: true,
+    stacked: false,
     toolbar: {
       show: false,
     },
   },
 
   xaxis: {
-    categories: [
-      "junio",
-      "abril",
-      "mayo",
-      "julio",
-      "agosto",
-      "septiembre",
-      "octubre",
-      "noviembre",
-      "diciembre",
-      "febrero",
-    ],
+    categories: meses,
     labels: {
       style: {
         colors: "gray",
@@ -77,7 +86,7 @@ const options = {
   markers: false,
 }
 
-export const FinancingChart = () => {
+export const WinningsChart = () => {
   return (
     <ChartContainer
       chart={

@@ -1,61 +1,42 @@
 "use client"
+
+import dynamic from "next/dynamic"
 import React from "react"
-import Chart from "react-apexcharts"
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false })
 import ChartContainer from "./chartContainer"
-
-const meses = [
-  "abril",
-  "mayo",
-  "junio",
-  "julio",
-  "agosto",
-  "septiembre",
-  "octubre",
-  "noviembre",
-  "diciembre",
-  "enero",
-  "febrero",
-]
-
-const total = [2, 6, 1, 17, 70, 83, 12, 63, 51, 19, 2]
-
-const aprob = [1, 2, 0, 12, 38, 18, 2, 11, 5, 1, 1]
-
-const rech = [1, 4, 1, 5, 32, 65, 10, 52, 46, 18, 1]
 
 const state = [
   {
-    name: "Total",
-    data: total,
-  },
-  {
-    name: "Rechazadas",
-    data: rech,
-  },
-  {
-    name: "Aprobadas",
-    data: aprob,
+    name: "Series1",
+    data: [0, 93, 11, 3],
   },
 ]
 
 const options = {
   chart: {
-    type: "area",
+    type: "bar",
     animations: {
       easing: "linear",
       speed: 300,
     },
     id: "basic-bar",
     foreColor: "gray",
-    stacked: false,
+    stacked: true,
     toolbar: {
       show: false,
     },
   },
+  plotOptions: {
+    bar: {
+      distributed: true, // This is needed to apply individual colors
+    },
+  },
+  dataLabels: {
+    enabled: false, // This disables the data labels
+  },
 
-  colors: ["#808080", "#00e396", "#ff4560"], // Gris para Total, Verde para Aprobadas, Rojo para Rechazadas
   xaxis: {
-    categories: meses,
+    categories: ["Carro", "Moto", "Mototaxi", "Hipoteca"],
     labels: {
       style: {
         colors: "gray",
@@ -95,12 +76,10 @@ const options = {
   markers: false,
 }
 
-export const RequestsChart = () => {
+export const FinancingTypeChart = () => {
   return (
     <ChartContainer
-      chart={
-        <Chart options={options} series={state} type="area" height={325} />
-      }
+      chart={<Chart options={options} series={state} type="bar" height={325} />}
     />
   )
 }

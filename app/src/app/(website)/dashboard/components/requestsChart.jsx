@@ -1,6 +1,8 @@
 "use client"
+
+import dynamic from "next/dynamic"
 import React from "react"
-import Chart from "react-apexcharts"
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false })
 import ChartContainer from "./chartContainer"
 
 const meses = [
@@ -15,16 +17,26 @@ const meses = [
   "diciembre",
   "enero",
   "febrero",
-  "marzo",
 ]
+
+const total = [2, 6, 1, 17, 70, 83, 12, 63, 51, 19, 2]
+
+const aprob = [1, 2, 0, 12, 38, 18, 2, 11, 5, 1, 1]
+
+const rech = [1, 4, 1, 5, 32, 65, 10, 52, 46, 18, 1]
 
 const state = [
   {
-    name: "Ganancias",
-    data: [
-      39087.17, 51274.17, 40715.16, 38162.3, 43010.9, 57429.98, 60112.07,
-      52345.37, 58427.18, 55085.85, 48755.46, 19370.59,
-    ],
+    name: "Total",
+    data: total,
+  },
+  {
+    name: "Rechazadas",
+    data: rech,
+  },
+  {
+    name: "Aprobadas",
+    data: aprob,
   },
 ]
 
@@ -43,6 +55,7 @@ const options = {
     },
   },
 
+  colors: ["#808080", "#00e396", "#ff4560"], // Gris para Total, Verde para Aprobadas, Rojo para Rechazadas
   xaxis: {
     categories: meses,
     labels: {
@@ -84,7 +97,7 @@ const options = {
   markers: false,
 }
 
-export const WinningsChart = () => {
+export const RequestsChart = () => {
   return (
     <ChartContainer
       chart={

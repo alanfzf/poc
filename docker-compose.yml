@@ -1,0 +1,17 @@
+version: '3'
+services:
+  nextjs:
+    build:
+      context: ./app/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    command: npm start
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - nextjs

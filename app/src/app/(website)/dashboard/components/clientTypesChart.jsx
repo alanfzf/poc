@@ -1,5 +1,7 @@
 "use client"
-import Chart from "react-apexcharts"
+
+import dynamic from "next/dynamic"
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false })
 import ChartContainer from "./chartContainer"
 
 // For a pie chart, the series should just be an array of numbers

@@ -1,18 +1,19 @@
 "use client"
+import dynamic from "next/dynamic"
 import React from "react"
-import Chart from "react-apexcharts"
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false })
 import ChartContainer from "./chartContainer"
 
 const state = [
   {
     name: "Series1",
-    data: [0, 93, 11, 3],
+    data: [1, 2, 4, 11, 35, 20, 3, 10, 6, 2],
   },
 ]
 
 const options = {
   chart: {
-    type: "bar",
+    type: "area",
     animations: {
       easing: "linear",
       speed: 300,
@@ -24,17 +25,20 @@ const options = {
       show: false,
     },
   },
-  plotOptions: {
-    bar: {
-      distributed: true, // This is needed to apply individual colors
-    },
-  },
-  dataLabels: {
-    enabled: false, // This disables the data labels
-  },
 
   xaxis: {
-    categories: ["Carro", "Moto", "Mototaxi", "Hipoteca"],
+    categories: [
+      "junio",
+      "abril",
+      "mayo",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre",
+      "febrero",
+    ],
     labels: {
       style: {
         colors: "gray",
@@ -74,10 +78,12 @@ const options = {
   markers: false,
 }
 
-export const FinancingTypeChart = () => {
+export const FinancingChart = () => {
   return (
     <ChartContainer
-      chart={<Chart options={options} series={state} type="bar" height={325} />}
+      chart={
+        <Chart options={options} series={state} type="area" height={325} />
+      }
     />
   )
 }
