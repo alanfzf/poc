@@ -18,7 +18,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json())
 function Prequalifications() {
   const [page, setPage] = React.useState(1)
   const rowsPerPage = 5
-  const { data, error, isLoading } = useSWR("/api/prequalifications", fetcher)
+  const { data, isLoading } = useSWR("/api/prequalifications", fetcher)
 
   const users = data || []
   const pages = Math.ceil(users.length / rowsPerPage)

@@ -81,7 +81,7 @@ export default function WebsiteLayout({ children }) {
           </NavbarMenuItem>
         </NavbarMenu>
       </Navbar>
-      <main className="bg-neutral-900 py-5">{children}</main>
+      <main className="py-5">{children}</main>
     </div>
   )
 }

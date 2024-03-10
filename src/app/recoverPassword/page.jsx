@@ -25,7 +25,7 @@ function RestorePassword() {
 
   const goBack = () => router.push("/", { scroll: false })
 
-  const sendData = async (data) => {
+  const sendData = async (_data) => {
     await new Promise((resolve) => setTimeout(resolve, 1500))
     alert("Solicitud enviada con exito!")
     goBack()
